@@ -4,6 +4,7 @@ package com.shopkart.di
 import android.content.Context
 import androidx.room.Room
 import com.shopkart.data.local.AppDatabase
+import com.shopkart.data.local.ProductDao
 import com.shopkart.data.remote.ProductApi
 import dagger.Module
 import dagger.Provides
@@ -45,5 +46,10 @@ object AppModule {
             AppDatabase::class.java,
             "shopkart.db"
         ).build()
+    }
+
+    @Provides
+    fun provideProductDao(db: AppDatabase): ProductDao {
+        return db.productDao()
     }
 }
